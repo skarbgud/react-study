@@ -9,7 +9,7 @@
     <script type="text/babel">
         function App() {
             const [amount, setAmount] = React.useState(0);
-            const [flipped, setFlipped] = React.useState(false);
+            const [inserted, setInserted] = React.useState(false);
             const onChagne = (event) => {
                 console.log();
                 setAmount(event.target.value);
@@ -17,31 +17,31 @@
             const reset = () => setAmount(0)
             const onFlip = () => {
                 reset()
-                setFlipped((current) => !current)
+                setInserted((current) => !current)
             };
             return (
                 <div>
                     <h1>Super Converter</h1>
                     <label htemlFor="minutes">Minutes</label>
                     <input
-                        value={flipped ? amount * 60: amount}
+                        value={inserted ? amount * 60: amount}
                         id="minutes" 
                         placeholder="Minutes" 
                         type="number"
                         onChange={onChagne}
-                        disabled={flipped}
+                        disabled={inserted}
                     />
                     <label htemlFor="hours">Hours</label>
                     <input 
-                        value={flipped ? amount : Math.round(amount / 60)}
+                        value={inserted ? amount : Math.round(amount / 60)}
                         id="hours" 
                         placeholder="Hours" 
                         type="number"
-                        disabled={!flipped}
+                        disabled={!inserted}
                         onChange={onChagne}
                     />
                     <button onClick={reset}>Reset</button>
-                    <button onClick={onFlip}>Flip</button>
+                    <button onClick={onFlip}>{inserted ? "Turn back" : "Invert"}</button>
                 </div>
             )
         };
